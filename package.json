@@ -1,0 +1,15 @@
+{
+  "name": "saveaspot",
+  "version": "1.0.0",
+  "description": "a platform to help save a spot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo 'Hello'"
+  },
+  "author": "fullstack",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-session": "^1.17.2"
+  }
+}
