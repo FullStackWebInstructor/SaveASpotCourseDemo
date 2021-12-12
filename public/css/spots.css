@@ -1,0 +1,11 @@
+
+
+#side-menu {
+    width: 280px;
+    min-height: 100vh;
+}
+
+.side-menu-item:hover {
+    background-color: #0d6efd;
+    color: white;
+}

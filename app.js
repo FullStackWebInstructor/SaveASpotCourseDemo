@@ -15,10 +15,16 @@ app.use(session({
     }
 }));
 
+app.use(express.static('public'))
+
 app.get('/', (req, res) => {
-    res.sendFile("login.html", {
-        root: "./view"
-    });
+    if (req.session.userId === undefined) {
+        res.sendFile("login.html", {
+            root: "./view"
+        });
+    } else {
+        res.redirect("/spots");
+    }
 })
 
 app.get('/register', (req, res) => {
@@ -27,12 +33,22 @@ app.get('/register', (req, res) => {
     });
 })
 
+app.get('/spots', (req, res) => {
+    if (false) {  // TODO make real authentication: req.session.userId === undefined
+        res.redirect("/");
+    } else {
+        res.sendFile("spots.html", {
+            root: "./view"
+        });
+    }
+})
+
 app.post('/login', (request, response) => {
     if (request.body.email === "abc" && request.body.password === "123") {
         request.session.userId = request.body.email;
         response.status(200).json({ result: "success" });
     } else {
-        response.status(403).json({ result: "wrong email or password" });    
+        response.status(403).json({ result: "wrong email or password" });
     }
 });
 
@@ -43,10 +59,10 @@ app.post('/register', (request, response) => {
 
 app.get('/login_test', (request, response) => {
     if (request.session.userId === undefined) {
-        response.status(403).json({result: "you need to log in !"})
+        response.status(403).json({ result: "you need to log in !" })
     } else {
         response.status(200).json({ result: "successful login test" });
-    }     
+    }
 });
 
 
