@@ -14,10 +14,16 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
+    <!-- Axios AJAX client-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 
     <!-- our own CSS -->
     <link href="/css/global.css" rel="stylesheet">
     <link href="/css/spots.css" rel="stylesheet">
+
+    <!-- our own JS -->
+    <script src="/js/spots.js"></script>
 
     <title>SaveASpot</title>
 
@@ -49,18 +55,61 @@
                         My Work Items
                     </a>
                 </li>
-
             </ul>
             <hr>
             <div class="dropdown">
-                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-                    id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                    <strong>mdo</strong>
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="user-name-btn"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle"></i>
+                    &nbsp;&nbsp;&nbsp;
+                    <strong>Menu</strong>
                 </a>
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    <li><a class="dropdown-item" onclick="logout()" href="#">Sign out</a></li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- container for spot -->
+        <div id="spot-container">
+        </div>
+
+        <!-- Create button -->
+        <button id="create-btn" data-bs-toggle="modal" data-bs-target="#create-modal-dialog">+</button>
+
+        <!-- Bootstrap dialog -->
+        <div class="modal fade" id="create-modal-dialog" tabindex="-1" aria-labelledby="create-modal-dialog-label"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="create-modal-dialog-label">Create A Spot Request</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="date-input" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="date-input">
+                        </div>
+                        <div class="mb-3">
+                            <label for="time-input" class="form-label">time</label>
+                            <input type="time" class="form-control" id="time-input">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address-input" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="address-input">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reward-input" class="form-label">Reward</label>
+                            <input type="text" class="form-control" id="reward-input">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="dismiss-close-dialog"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary " onclick="createRequest()">Create</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
