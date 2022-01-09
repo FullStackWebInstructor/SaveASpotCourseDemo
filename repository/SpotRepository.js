@@ -1,11 +1,45 @@
 const Spot = require('../model/Spot.js').model;
+const sequelizePkg = require('sequelize');
+const db = require('../db/db.js').client;
+const DataTypes = sequelizePkg.DataTypes;
 
-const SPOT_DB = [
-    new Spot(0, "abc@saveaspot.com", "1234567"),
-    new Spot(1, "def@saveaspot.com", "1234567")
-];
-
-let CURRENT_NEW_ID = 2;
+const SPOT_TABLE = db.define('Spot', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        field: "id"
+    },
+    creator: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: "requester_email"
+    },
+    helper: {
+        type: DataTypes.STRING,
+        field: "worker_email"
+    },
+    location: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: "location"
+    },
+    date: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        field: "date"
+    },
+    reward: {
+        type: DataTypes.STRING,
+        field: "reward"
+    },
+    complete: {
+        type: DataTypes.BOOLEAN,
+        field: "is_completed"
+    }
+}, {
+    tableName: 'Spots',
+    timestamps: false
+})
 
 class SpotRepository {
     static async getAllActive() {
