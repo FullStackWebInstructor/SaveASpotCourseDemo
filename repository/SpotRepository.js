@@ -65,7 +65,7 @@ class SpotRepository {
 
     static async complete(id, email) {
         // return number (the id);  (Optional) can throw Error
-        // 把对应id的 spot 的creator 值改成 email
+        // 把对应id的 spot 的completed 值改成 true
     }
 
     static async create(spot) {
